@@ -1,0 +1,17 @@
+.expense-list-body{
+    width: 50%;
+}
+
+.expense-item-title{
+    display: flex;
+    /* background-color: red; */
+    width: 64%;
+    justify-content: space-between;
+
+    /* align-items: center; */
+}
+
+.expense-item-title p{
+    /* background-color: green; */
+    width: 46%;
+}

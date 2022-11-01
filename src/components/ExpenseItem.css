@@ -1,0 +1,22 @@
+.expense-item-list{
+    display: flex;
+    background-color: aqua;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.expense-item-icons{
+   display: flex;
+   flex-direction: row;
+   justify-content:space-evenly;
+   /* background-color: red; */
+
+}
+/* .expense-item-icon{
+    
+} */
+
+.expense-item-list p, .expense-item-icons {
+    width: 30%;
+    /* background-color: green; */
+}

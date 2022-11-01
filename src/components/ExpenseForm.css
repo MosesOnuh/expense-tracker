@@ -1,0 +1,21 @@
+.expense-form-body{
+    border-color: green;
+    border-width: 1px;
+    border-style: solid;
+    width: 40%;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    /* background-color: blue; */
+    /* text-align: none; */
+}
+
+.expense-input{
+    width: 80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+h4{
+    background-color: blue;  
+}
