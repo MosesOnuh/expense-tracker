@@ -55,37 +55,51 @@ class App extends Component {
     event.preventDefault();
     const amount = parseInt(this.state.tempExpenseAmount);
     const expenseObject = {id: uuid(), title: this.state.tempExpenseTitle, amount: amount};
-    
+    const storedExpense = localStorage.getItem("userExpenses")
+
+    if ( storedExpense === null) {
+      const expenseArray =[]
+      expenseArray.push(expenseObject)
+      localStorage.setItem("userExpenses",  JSON.stringify(expenseArray))
+    } else {
+      const localExpense = JSON.parse(storedExpense)
+      localExpense.push(expenseObject)
+      localStorage.setItem("userExpenses",  JSON.stringify(localExpense))
+    }
+
     this.setState((previousState) =>{
       return {
         // userExpense: [...this.state.userExpense, {...expenseObject}],  
-        userExpense: [...previousState.userExpense, {...expenseObject}],  
+        // userExpense: [...previousState.userExpense, {...expenseObject}],  
         tempExpenseTitle: "",
         tempExpenseAmount: ""
       }}, this.calculateExpenseSum());
   }
 
   calculateExpenseSum = () => {
-    // const expenses = 
+    const expenses = JSON.parse(localStorage.getItem("userExpenses")) 
     let sum = 0
-      if (this.state.userExpense.length > 1) {
-        this.state.userExpense.forEach(expense=> sum += expense.amount)
-      } else if (this.state.userExpense.length === 1) {
-        sum += this.state.userExpense[0].amount
+      if (expenses !== null && expenses.length > 1) {
+        expenses.forEach(expense=> sum += expense.amount)
+      } else if (expenses !== null && expenses.length === 1) {
+        sum += expenses[0].amount
       }else {
         sum = 0
       }
 
-    this.setState((prevState) => {
-      return {...prevState, expenseSum: sum};
-    }, this.calculateBalance)
+    localStorage.setItem("expenseSum", `${sum}`)
+    // this.setState(() => {
+    //   return { expenseSum: sum};
+    // }, this.calculateBalance)
+    this.calculateBalance()
   }
 
   calculateBalance = () => {
     console.log(this.state.expenseSum)
-    const userBalance = (this.state.income) - (this.state.expenseSum)
-    this.setState((prevState) => {
-      return {...prevState, balance: userBalance};
+    const totalExpenses = localStorage.getItem("expenseSum") 
+    const userBalance = (this.state.income) - (parseInt(totalExpenses))
+    this.setState(() => {
+      return {balance: userBalance};
     });
   }
 
