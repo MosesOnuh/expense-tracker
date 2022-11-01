@@ -17,15 +17,9 @@ class App extends Component {
     expenseSum: 0,
     balance: 0,
     userExpense: [],  // [{expenseItem: "beans", expenseAmount: 400}, {expenseItem: "rice", expenseAmount: 300}]
-    // expenseTitle: "",
-    // expenseAmount: 0,
+
   }
 
-  // componentDidUpdate(){
-    // this.calculateExpenseSum(); 
-    // this.calculateBalance();
-// }
-  
   changeHandler = (event) =>{
     this.setState(() => {
       return {tempIncome: event.target.value};
@@ -34,8 +28,17 @@ class App extends Component {
 
   calculateIncomeHandler = (event) =>{
     event.preventDefault();
+    const storedIncome = localStorage.getItem("income")
+    let stateIncome =  parseInt(this.state.tempIncome || 0)
 
-    const newIncome = parseInt(this.state.tempIncome || 0) + this.state.income
+    if (storedIncome !== null ) {
+      const updatedIncome = parseInt(storedIncome) + stateIncome
+      localStorage.setItem("income", updatedIncome)
+    }else {
+      localStorage.setItem("income", stateIncome)
+    }
+
+    const newIncome = stateIncome + this.state.income
     this.setState(() => {
       return {
         income: newIncome,
@@ -97,7 +100,9 @@ class App extends Component {
   calculateBalance = () => {
     console.log(this.state.expenseSum)
     const totalExpenses = localStorage.getItem("expenseSum") 
-    const userBalance = (this.state.income) - (parseInt(totalExpenses))
+    const storedIncome = localStorage.getItem("income")
+    // const userBalance = (this.state.income) - (parseInt(totalExpenses))
+    const userBalance = parseInt(storedIncome || 0) - (parseInt(totalExpenses))
     this.setState(() => {
       return {balance: userBalance};
     });
