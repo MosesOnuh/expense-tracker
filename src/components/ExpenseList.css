@@ -1,17 +1,23 @@
 .expense-list-body{
-    width: 50%;
+    width: 54%;
+    /* background-color: aqua; */
+    padding:0;
 }
 
-.expense-item-title{
-    display: flex;
-    /* background-color: red; */
-    width: 64%;
-    justify-content: space-between;
-
-    /* align-items: center; */
+.expense-table {
+    width: 100%;
+    /* border-collapse: separate; */
+    border-spacing: 0rem 1rem;
 }
 
-.expense-item-title p{
-    /* background-color: green; */
-    width: 46%;
+.expense-table td {
+    /* background-color: pink; */
+    text-align: center;
+    /* width: 100%; */
 }
+
+.icon-header{
+    visibility: hidden;
+}
+
+

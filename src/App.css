@@ -1,5 +1,23 @@
+.app{
+  padding-left: 7rem;
+  padding-right: 7rem;
+}
+
+h1 {
+  font-weight: lighter;
+  color: #17a2b8;
+  margin-bottom: 0.7rem;
+  font-size: 1.8rem;
+}
+
+.app h2 {
+  text-transform: uppercase;
+  font-weight: lighter;
+  font-size: 2rem;
+  margin-top: 0;
+}
+
 .app-top-section{
   display: flex;
   justify-content: space-between;
-  margin: 2rem 7rem;
 }

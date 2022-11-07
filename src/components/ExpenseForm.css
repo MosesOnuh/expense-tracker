@@ -1,21 +1,29 @@
-.expense-form-body{
-    border-color: green;
-    border-width: 1px;
-    border-style: solid;
-    width: 40%;
-    padding-left: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-    /* background-color: blue; */
-    /* text-align: none; */
+.expense-form{
+    border-color: #dc3545;
+}
+
+.expense-form input, .expense-form label {
+    display: block;
 }
 
 .expense-input{
-    width: 80%;
+    border-color: #dc3545;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
-h4{
-    background-color: blue;  
+
+.expense-input:focus {
+    outline: none;
+}
+
+.expense-button{
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.expense-title, .expense-amount {
+    font-weight: lighter;
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    margin-top: 0;
 }

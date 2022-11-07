@@ -1,6 +1,26 @@
 .result-body{
-    display: flex;
-    /* background-color: orangered; */
-    justify-content: space-between;
-    width: 50%;
+    width: 53%;
 }
+
+.result-body p{
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+.result-container{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.text-info{
+    color: #17a2b8 !important;
+
+}
+
+.fa-naira:before {
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+    content: "₦";
+  }

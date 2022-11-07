@@ -17,8 +17,8 @@ class App extends Component {
     expenseSum: 0,
     balance: 0,
     userExpense: [],  // [{expenseItem: "beans", expenseAmount: 400}, {expenseItem: "rice", expenseAmount: 300}]
-    // expenseTitle: "",
-    // expenseAmount: 0,
+    edit: false,
+    editItem: {}
   }
 
   // componentDidUpdate(){
@@ -35,75 +35,109 @@ class App extends Component {
   calculateIncomeHandler = (event) =>{
     event.preventDefault();
 
-    const newIncome = parseInt(this.state.tempIncome || 0) + this.state.income
-    this.setState(() => {
-      return {
-        income: newIncome,
-        tempIncome: ""
-      }},this.calculateExpenseSum());
+    const newIncome = parseInt(this.state.tempIncome || 0)
+    this.setState({
+      income: newIncome,
+      tempIncome: ""
+    },this.calculateBalance);
   }
 
 
   resetIncomeHandler = (event) => {
     event.preventDefault();
-    this.setState(() => {
-      return {income: 0};
-    });
+    this.setState({income: 0}, this.calculateBalance);
   }
 
   getExpense = (event) => {
     event.preventDefault();
-    const amount = parseInt(this.state.tempExpenseAmount);
-    const expenseObject = {id: uuid(), title: this.state.tempExpenseTitle, amount: amount};
+    const {tempExpenseAmount, tempExpenseTitle, userExpense} = this.state
+    const amount = parseInt(tempExpenseAmount);
+    const expenseObject = {id: uuid(), title: tempExpenseTitle, amount: amount};
     
-    this.setState((previousState) =>{
-      return {
+    if (this.state.edit === true){
+      const stateExpenses = this.state.userExpense
+      const editExpense = stateExpenses.find(expense => expense.id === this.state.editItem.id)   
+      const expenseIndex = stateExpenses.indexOf(editExpense)
+
+      const finalExpense = {...editExpense, title: tempExpenseTitle, amount: amount}
+      stateExpenses[expenseIndex] = finalExpense
+
+      this.setState({
         // userExpense: [...this.state.userExpense, {...expenseObject}],  
-        userExpense: [...previousState.userExpense, {...expenseObject}],  
+        userExpense: [...stateExpenses],  
         tempExpenseTitle: "",
-        tempExpenseAmount: ""
-      }}, this.calculateExpenseSum());
+        tempExpenseAmount: "",
+        edit: false,
+        editExpense: {}
+      }, this.calculateExpenseSum);
+      return
+  }
+      
+    
+    this.setState({
+      // userExpense: [...this.state.userExpense, {...expenseObject}],  
+      userExpense: [...userExpense, expenseObject],  
+      tempExpenseTitle: "",
+      tempExpenseAmount: ""
+    }, this.calculateExpenseSum);
   }
 
   calculateExpenseSum = () => {
     // const expenses = 
-    let sum = 0
-      if (this.state.userExpense.length > 1) {
-        this.state.userExpense.forEach(expense=> sum += expense.amount)
-      } else if (this.state.userExpense.length === 1) {
-        sum += this.state.userExpense[0].amount
-      }else {
-        sum = 0
-      }
+    // let sum = 0
+    //   if (this.state.userExpense.length > 1) {
+    //     this.state.userExpense.forEach(expense=> sum += expense.amount)
+    //   } else if (this.state.userExpense.length === 1) {
+    //     sum += this.state.userExpense[0].amount
+    //   }else {
+    //     sum = 0
+    //   }
 
-    this.setState((prevState) => {
-      return {...prevState, expenseSum: sum};
-    }, this.calculateBalance)
+    const sum = this.state.userExpense?.reduce((a, b) => a + b.amount, 0)
+
+    this.setState({expenseSum: sum}, this.calculateBalance)
   }
 
   calculateBalance = () => {
-    console.log(this.state.expenseSum)
     const userBalance = (this.state.income) - (this.state.expenseSum)
-    this.setState((prevState) => {
-      return {...prevState, balance: userBalance};
-    });
+    this.setState({balance: userBalance});
   }
 
   changeExpenseTitleHandler = (event) => {
-    this.setState(() => {
-      return {tempExpenseTitle: event.target.value};
-    })
+    this.setState({tempExpenseTitle: event.target.value})
   }
 
   changeExpenseAmountHandler = (event) => {
-    this.setState(() => {
-      return {tempExpenseAmount: event.target.value}
-    });
+    this.setState({tempExpenseAmount: event.target.value});
   }
+
+  deleteExpense = id => {
+    const filteredExpenses = this.state.userExpense.filter(expense => expense.id !== id)
+  
+    this.setState({
+      userExpense: filteredExpenses
+    }, this.calculateExpenseSum)
+  }
+
+  editExpense = id => {
+    const editExpense = this.state.userExpense.find(expense => expense.id === id)
+    
+
+    this.setState({
+      tempExpenseTitle: editExpense.title,
+      tempExpenseAmount: editExpense.amount,
+      edit: true,
+      editItem: editExpense
+    })
+  }
+
 
   render() {
   return (
-    <div className="App">   
+    <div className="app">   
+    <h1>Welcome, let's help you track your expenses</h1>
+    <h2>Expense tracker</h2>
+
       <ItemWrapper className="app-top-section">
         <IncomeForm  
           tempIncome={this.state.tempIncome} 
@@ -127,6 +161,8 @@ class App extends Component {
         />
           <ExpenseList
             userExpense={this.state.userExpense} 
+            deleteExpense = {this.deleteExpense}
+            editExpense = {this.editExpense}
           />
       </ItemWrapper>
     </div>

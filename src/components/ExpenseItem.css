@@ -1,22 +1,20 @@
-.expense-item-list{
-    display: flex;
-    background-color: aqua;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-.expense-item-icons{
-   display: flex;
+
+.expense-item-icon{
+   /* display: flex;
    flex-direction: row;
    justify-content:space-evenly;
-   /* background-color: red; */
-
+  align-items: center;
+  align-self: center;
+  align-content: center;
+   background-color: red;
+   height: 100%; */
+   /* display: grid; */
+   /* margin-left: 0.5rem ; */
+   margin-right: 1rem;
 }
-/* .expense-item-icon{
-    
-} */
-
-.expense-item-list p, .expense-item-icons {
-    width: 30%;
-    /* background-color: green; */
+.expense-item-icons{
+    text-align: start !important;
+    /* background-color: blue; */
 }
+
+

@@ -1,12 +1,28 @@
-.income-form-body{
-    border-color: green;
+.form-container{
     border-width: 1px;
+    border-radius:5px;
     border-style: solid;
     width: 40%;
-    padding-left: 1rem;
+    padding: 1rem 4rem 1.8rem  1.8rem;
+    margin-top: 0;
     margin-bottom: 2rem;
-    /* background-color: blue; */
-    /* text-align: none; */
+}
+
+.income-form-body{
+    border-color: #28a745;
+}
+
+.income-form-body label{
+    font-weight: lighter;
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    margin-top: 0;
+    display: block;
+}
+
+.income-form-body small{
+    margin-bottom: 0.7rem;
+    display: block;
 }
 
 .income-button-set{
@@ -18,18 +34,44 @@
     justify-content: space-between;
 }
 
-.income-input{
-    width: 80%;
+.input-field{
+    width: 100%;
+    display: block;
+    margin-bottom: 0.7rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid ;
+    border-radius: 5px;
+    background-color: white;
 }
-h4{
-    background-color: blue;
-    
+
+.income-input{
+    border-color: #28a745;
+}
+
+.income-input:focus {
+    outline: none;
+}
+
+.btn {
+    padding: 0.5rem 0.7rem;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 5px;
+    font: inherit;
+    cursor: pointer;
+
 }
 
 .reset-btn{
-    /* border: 1px solid grey; */
-    cursor: pointer;
-    /* padding: 0.5rem; */
+    border-color: #17a2b8;
+    color: #17a2b8;
+    margin-left: 0.5rem;
+}
+
+.calculate-btn {
+    border-color: #28a745;
+    color: #28a745;
 }
 
 /* .reset-btn:hover{

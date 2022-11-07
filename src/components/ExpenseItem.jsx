@@ -3,17 +3,23 @@ import "./ExpenseItem.css"
 
 export default class ExpenseItem extends Component {
   render() {
-    const {expenseTitle, expenseAmount} = this.props;
+    const {expenseTitle, expenseAmount, deleteExpense, editExpense} = this.props;
     return (
-      <li className='expense-item-list'>
-        <p>{expenseTitle}</p>
-        <p>{expenseAmount}</p>
-        <div className='expense-item-icons'>
-            <span className='expense-item-icon'><i className="fas fa-pen" /></span>
-            <span className='expense-item-icon1'><i className="fas fa-trash" /></span> 
-        </div>
-        
-      </li>
+      <tr className=''>
+        <td className='td1'>{expenseTitle}</td>
+        <td className='td2'>₦ {expenseAmount}</td>
+        <td className='expense-item-icons'>
+            <span className='expense-item-icon'
+              onClick={editExpense}
+            >
+              <i className="fas fa-pen" /></span>
+            <span className='expense-item-icon1'
+              onClick={deleteExpense}
+            >
+              <i className="fas fa-trash" />
+            </span> 
+        </td>        
+      </tr>
     )
   }
 }
