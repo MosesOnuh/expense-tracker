@@ -1,17 +1,27 @@
 .result-body{
-    width: 53%;
+    width: 55%;
+    /* background-color: green; */
+    
+}
+.item{
+    width: 30%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /* background-color: pink; */
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.item p {
+    /* background-color: blue; */
+}
 .result-body p{
     font-weight: bold;
     text-transform: uppercase;
 
-}
-
-.result-container{
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
 }
 
 .text-info{

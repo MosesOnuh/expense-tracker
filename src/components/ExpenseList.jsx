@@ -23,16 +23,16 @@ export default class ExpenseList extends Component {
         
       // </ul>
       <div className='expense-list-body'>
-        <table className='expense-table'> 
-          <tr className='expense-item-title'>
-            <th>Expense Title</th>
-            <th>Expense Value</th>
-            <th className='icon-header'>Expense icons</th>          
-          </tr>  
+        <ul className='expense-table'> 
+          <li className='expense-item-title expenses'>
+            <p>Expense Title</p>
+            <p>Expense Value</p>
+            <p className='icon-header'>Expense icons</p>          
+          </li>  
           {userExpense.map((expense) =>{
             return <ExpenseItem key={expense.id} expenseTitle={expense.title} expenseAmount={expense.amount} deleteExpense={()=>deleteExpense(expense.id)} editExpense={()=>editExpense(expense.id)}/>
           })}
-      </table>
+      </ul>
       </div>
       
     )

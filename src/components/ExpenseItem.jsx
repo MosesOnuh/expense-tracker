@@ -5,10 +5,10 @@ export default class ExpenseItem extends Component {
   render() {
     const {expenseTitle, expenseAmount, deleteExpense, editExpense} = this.props;
     return (
-      <tr className=''>
-        <td className='td1'>{expenseTitle}</td>
-        <td className='td2'>₦ {expenseAmount}</td>
-        <td className='expense-item-icons'>
+      <li className='expenses expense-item'>
+        <p className='td1'>{expenseTitle}</p>
+        <p className='td2'>₦ {expenseAmount}</p>
+        <p className='expense-item-icons'>
             <span className='expense-item-icon'
               onClick={editExpense}
             >
@@ -18,8 +18,8 @@ export default class ExpenseItem extends Component {
             >
               <i className="fas fa-trash" />
             </span> 
-        </td>        
-      </tr>
+        </p>        
+      </li>
     )
   }
 }

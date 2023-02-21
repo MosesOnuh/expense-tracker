@@ -1,20 +1,43 @@
 .expense-list-body{
-    width: 54%;
+    width: 55%;
     /* background-color: aqua; */
     padding:0;
 }
 
-.expense-table {
-    width: 100%;
-    /* border-collapse: separate; */
-    border-spacing: 0rem 1rem;
+expense-table{
+    padding: 0;
+    margin: 0;
 }
 
-.expense-table td {
-    /* background-color: pink; */
-    text-align: center;
-    /* width: 100%; */
+.expenses {
+    list-style: none;
+    display: flex;
 }
+
+.expense-item-title p, .expense-item p {
+    width: 30%;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+/* .expense-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0rem 1rem;
+} */
+
+/* .expense-table td {
+    text-align: center;
+} */
 
 .icon-header{
     visibility: hidden;
